@@ -32,13 +32,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-ruby '2.2.6'
-
-if ENV['RAILS_ENV'] == 'development'
-  ruby '2.2.4'
-elsif ENV['RAILS_ENV'] == 'production'
-  ruby '2.3.1'
-end
+ruby '3.3.1'
 
 
 
