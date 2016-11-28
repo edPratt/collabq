@@ -1,0 +1,8 @@
+%h1 Welcome
+%br
+- if user_signed_in?
+  = link_to 'Questions', controller: 'questions'
+  %br 
+  = link_to 'New question', new_question_path
+%br
+= link_to 'About Us', public_about_us_path
