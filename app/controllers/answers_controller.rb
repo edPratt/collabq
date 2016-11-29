@@ -8,6 +8,10 @@ class AnswersController < ApplicationController
     redirect_to question_path(@question)
   end
 
+  def new
+    @question = Question.find(question_id)
+  end
+
   def update
     @question = Question.find(question_id)
     @answer = @question.answer

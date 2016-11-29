@@ -1,3 +1,4 @@
+
 %h1 Questions
 %br
 = link_to new_question_path, class: 'btn btn-primary' do
@@ -10,7 +11,6 @@
     %th Answer
     %th Username
     %th
-    %th
   - @questions.each do |question|
     %tr
       %td= link_to question.body, question
@@ -18,8 +18,11 @@
         %td= question.answer.body
       - else
         %td Unanswered Question
-      %td= question.user.email
-      %td= link_to 'Edit', edit_question_path(question)
-      %td= link_to 'Destroy', question_path(question),
-                  method: :delete,
-                  data: { confirm: 'You sure homeboy?' }
+      - if question.user.email
+        %td= question.user.email
+      - else
+        %td 'No namer'
+      - if user_signed_in?
+        %td= link_to 'Destroy', question_path(question),
+                    method: :delete,
+                    data: { confirm: 'You sure homeboy?' }

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  root 'questions#index'
+
+  get 'allusers', to: 'users#show'
+
   devise_for :users
 
   namespace :public, path: nil do

@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 gem 'random-word', '~> 1.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
-gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.0'
 # Use Puma as the app server
@@ -33,12 +32,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'rails_12factor'
+  gem 'pg'
 end
 
-ruby '2.2.4'
-
-
-
+if ENV['RAILS_ENV'] == 'development'
+  ruby '2.3.1'
+elsif ENV['RAILS_ENV'] == 'production'
+  ruby '2.3.1'
+end
 
 # # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
@@ -69,10 +70,3 @@ ruby '2.2.4'
 #gem 'pry-nav', '~> 0.2.4'
 #gem 'rspec-rails', '~> 3.5' # test suite
 #gem 'factory_girl', '~> 4.7.0' # fake data
-
-
-
-
-
-
-

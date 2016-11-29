@@ -2,20 +2,22 @@
   %h2 Question
   %p= @question.body
 %br
-  = link_to 'Edit', edit_question_path(@question)
+  - if user_signed_in?
+    = link_to 'Edit the question', edit_question_path(@question)
 
-%h2 Answers
+%h2 Answer
 - if @question.answer
   %p= @question.answer.body
 
-%h2 Submit an answer
-- if @question.answer
-  = simple_form_for([@question, @question.answer]) do |f|
-    = f.input :body
-    = f.button :submit, 'Save'
-- else
-  Be the first to begin answering this question!
-  %br
-  = link_to new_question_answer_path(@question), class: 'btn btn-primary' do
-    .glyphicon.glyphicon-plus
-    Create
+- if user_signed_in?
+  %h2 Add to this answer
+  - if @question.answer
+    = simple_form_for([@question, @question.answer]) do |f|
+      = f.input :body
+      = f.button :submit, 'Save'
+  - else
+    Be the first to begin answering this question!
+    %br
+    = link_to new_question_answer_path(@question), class: 'btn btn-primary' do
+      .glyphicon.glyphicon-plus
+      Create
